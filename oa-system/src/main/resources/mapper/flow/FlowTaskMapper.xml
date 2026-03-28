@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newtouch.oa.mapper.flow.FlowTaskMapper">
+
+    <resultMap id="BaseResultMap" type="com.newtouch.oa.entity.flow.FlowTask">
+        <id column="id" property="id"/>
+        <result column="task_name" property="taskName"/>
+        <result column="flowable_task_id" property="flowableTaskId"/>
+        <result column="process_instance_id" property="processInstanceId"/>
+        <result column="process_def_id" property="processDefId"/>
+        <result column="activity_id" property="activityId"/>
+        <result column="activity_type" property="activityType"/>
+        <result column="assignee" property="assignee"/>
+        <result column="assignee_name" property="assigneeName"/>
+        <result column="candidates" property="candidates"/>
+        <result column="status" property="status"/>
+        <result column="is_read" property="isRead"/>
+        <result column="priority" property="priority"/>
+        <result column="task_variables" property="taskVariables"/>
+        <result column="create_time" property="createTime"/>
+        <result column="finish_time" property="finishTime"/>
+        <result column="duration" property="duration"/>
+        <result column="deleted" property="deleted"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, task_name, flowable_task_id, process_instance_id, process_def_id, activity_id,
+        activity_type, assignee, assignee_name, candidates, status, is_read, priority,
+        task_variables, create_time, finish_time, duration, deleted
+    </sql>
+
+    <select id="selectTodoTasks" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM flow_task
+        WHERE assignee = #{userId} AND status = 1 AND deleted = 0
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="selectDoneTasks" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM flow_task
+        WHERE assignee = #{userId} AND status = 2 AND deleted = 0
+        ORDER BY finish_time DESC
+    </select>
+</mapper>

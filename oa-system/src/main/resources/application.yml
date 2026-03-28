@@ -1,0 +1,57 @@
+# oa-system/src/main/resources/application.yml
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: oa-jianxin
+
+  profiles:
+    active: dev
+
+  # Flowable 配置
+  flowable:
+    database-schema-update: true  # 自动创建和更新数据库表
+    async-executor-activate: true  # 激活异步执行器
+    db-history-used: true  # 使用历史表
+    history-level: full  # 完整历史记录
+
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+# MyBatis-Plus 配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.newtouch.oa.entity
+  global-config:
+    db-config:
+      id-type: assign_uuid
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    com.newtouch: DEBUG
+    com.baomidou.mybatisplus: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n"
+
+# Knife4j 配置
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn

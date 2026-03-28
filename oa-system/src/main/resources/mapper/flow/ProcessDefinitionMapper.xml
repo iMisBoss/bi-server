@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newtouch.oa.mapper.flow.ProcessDefinitionMapper">
+
+    <resultMap id="BaseResultMap" type="com.newtouch.oa.entity.flow.ProcessDefinition">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="key" property="key"/>
+        <result column="version" property="version"/>
+        <result column="category" property="category"/>
+        <result column="status" property="status"/>
+        <result column="form_code" property="formCode"/>
+        <result column="description" property="description"/>
+        <result column="sort" property="sort"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="deleted" property="deleted"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, code, name, key, version, category, status, form_code, description, sort,
+        create_by, create_time, update_by, update_time, deleted
+    </sql>
+
+    <select id="selectByCode" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM flow_process_def
+        WHERE code = #{code} AND deleted = 0
+    </select>
+
+    <select id="selectPublished" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM flow_process_def
+        WHERE status = 2 AND deleted = 0
+        ORDER BY sort
+    </select>
+</mapper>
