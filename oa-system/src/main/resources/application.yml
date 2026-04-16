@@ -1,4 +1,3 @@
-# oa-system/src/main/resources/application.yml
 server:
   port: 8080
   servlet:
@@ -10,13 +9,6 @@ spring:
 
   profiles:
     active: dev
-
-  # Flowable 配置
-  flowable:
-    database-schema-update: true  # 自动创建和更新数据库表
-    async-executor-activate: true  # 激活异步执行器
-    db-history-used: true  # 使用历史表
-    history-level: full  # 完整历史记录
 
   jackson:
     time-zone: GMT+8

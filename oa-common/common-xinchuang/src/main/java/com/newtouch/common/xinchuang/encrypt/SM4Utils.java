@@ -1,5 +1,6 @@
-package com.neusoft.common.xinchuang.encrypt;
+package com.newtouch.common.xinchuang.encrypt;
 
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.bouncycastle.crypto.engines.SM4Engine;
 import org.bouncycastle.crypto.paddings.PKCS7Padding;
@@ -7,7 +8,6 @@ import org.bouncycastle.crypto.params.KeyParameter;
 import org.bouncycastle.util.encoders.Hex;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 

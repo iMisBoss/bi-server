@@ -1,12 +1,22 @@
-# oa-system/src/main/resources/application-dev.yml
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/oa_jianxin?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
-    username: root
-    password: ${DB_PASSWORD:newtouch@2026}
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/oa_jianxin?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&nullCatalogMeansCurrent=true
+          username: root
+          password: ${DB_PASSWORD:root}
+          hikari:
+            minimum-idle: 5
+            maximum-pool-size: 20
+            connection-timeout: 30000
 
-    hikari:
-      minimum-idle: 5
-      maximum-pool-size: 20
-      connection-timeout: 30000
+# Flowable 配置
+flowable:
+  database-schema-update: true
+  async-executor-activate: true
+  db-history-used: true
+  history-level: full

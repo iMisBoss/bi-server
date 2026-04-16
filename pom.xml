@@ -38,13 +38,13 @@
         <mysql.version>8.0.33</mysql.version>
         <druid.version>1.2.23</druid.version>
         <hutool.version>5.8.16</hutool.version>
-        <knife4j.version>4.1.0</knife4j.version>
+        <knife4j.version>4.5.0</knife4j.version>
         <jjwt.version>0.11.5</jjwt.version>
         <fastjson.version>2.0.25</fastjson.version>
         <guava.version>31.1-jre</guava.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-io.version>2.11.0</commons-io.version>
-        <lombok.version>1.18.26</lombok.version>
+        <lombok.version>1.18.30</lombok.version>
         <bouncycastle.version>1.70</bouncycastle.version>
         <dynamic-datasource.version>4.3.0</dynamic-datasource.version>
         <flowable.version>6.8.0</flowable.version>
@@ -52,14 +52,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- MyBatis Plus - 使用 boot-starter 而非 spring-boot3-starter -->
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-
-            <!-- MyBatis Plus Spring Boot 3 Starter -->
+            <!-- MyBatis Plus -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
@@ -75,25 +68,11 @@
 
             <dependency>
                 <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${druid.version}</version>
-            </dependency>
-
-            <!-- Druid Spring Boot 3 Starter -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-3-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
 
-            <!-- 动态数据源 - 使用 3.5.2 版本 -->
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-                <version>${dynamic-datasource.version}</version>
-            </dependency>
-
-            <!-- 动态数据源 Spring Boot 3 Starter -->
+            <!-- 动态数据源 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>
@@ -107,17 +86,19 @@
                 <version>${hutool.version}</version>
             </dependency>
 
-            <!-- Knife4j - 使用稳定版本 -->
+            <!-- Knife4j - Spring Boot 3 兼容版本 -->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-annotations</artifactId>
                 <version>2.1.12</version>
             </dependency>
+
             <!-- JWT -->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
@@ -178,20 +159,13 @@
                 <version>${bouncycastle.version}</version>
             </dependency>
 
-            <!-- Flowable - 使用 6.8.0 -->
+            <!-- Flowable -->
             <dependency>
                 <groupId>org.flowable</groupId>
                 <artifactId>flowable-spring-boot-starter</artifactId>
                 <version>${flowable.version}</version>
             </dependency>
 
-
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.18.24</version>
-                <scope>provided</scope>
-            </dependency>
             <!-- 子模块 -->
             <dependency>
                 <groupId>com.newtouch</groupId>
@@ -229,7 +203,6 @@
             <snapshots><enabled>true</enabled></snapshots>
         </repository>
 
-        <!-- 新增：Maven 中央仓库 -->
         <repository>
             <id>central</id>
             <url>https://repo.maven.apache.org/maven2</url>
@@ -237,7 +210,6 @@
             <snapshots><enabled>false</enabled></snapshots>
         </repository>
 
-        <!-- 新增：MyBatis 官方仓库，用于解决找不到 mybatis-plus-bom 的问题 -->
         <repository>
             <id>mybatis-snapshots</id>
             <name>MyBatis Repository</name>
